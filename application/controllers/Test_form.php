@@ -40,7 +40,23 @@ class Test_form extends CI_Controller
     // }
     public function index()
     {
-        if ($this->input->post('finish')) {
+		// $data['title'] = "FREEWORK";
+		// $data['kategori'] = $this->model_produk->get_kategori_query();
+		// $data['subkategori'] = $this->model_produk->subkategori();
+		// $data['category'] = $this->model_produk->category();
+		// $data['subcategory'] = $this->model_produk->subcategory();
+		// $data['jenis'] = $this->model_produk->jenis();
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		// $this->load->view('templates/header', $data);
+		// $this->load->view('templates/topbar', $data);
+		$this->load->view('templates/js', $data);
+		$this->load->view('test_form', $data);
+		// $this->load->view('templates/footer');
+    }
+
+	public function up()
+	{
+		if ($this->input->post('finish')) {
             $this->form_validation->set_rules('username', 'username', 'trim|required');
             $this->form_validation->set_rules('nama_depan', 'nama depan', 'trim|required');
             $this->form_validation->set_rules('nama_belakang', 'nama belakang', 'trim|required');
@@ -165,32 +181,9 @@ class Test_form extends CI_Controller
                 $this->load->view('test_form', $data);
                 // $this->load->view('templates/footer');
             } else {
-                // $data['title'] = "FREEWORK";
-                // $data['kategori'] = $this->model_produk->get_kategori_query();
-                // $data['subkategori'] = $this->model_produk->subkategori();
-                // $data['category'] = $this->model_produk->category();
-                // $data['subcategory'] = $this->model_produk->subcategory();
-                // $data['jenis'] = $this->model_produk->jenis();
-                $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-                // $this->load->view('templates/header', $data);
-                // $this->load->view('templates/topbar', $data);
-                $this->load->view('templates/js', $data);
-                $this->load->view('test_form', $data);
-                // $this->load->view('templates/footer');
+                return redirect('test_form');
+				// return $this->index();
             }
-        } else {
-            // $data['title'] = "FREEWORK";
-            // $data['kategori'] = $this->model_produk->get_kategori_query();
-            // $data['subkategori'] = $this->model_produk->subkategori();
-            // $data['category'] = $this->model_produk->category();
-            // $data['subcategory'] = $this->model_produk->subcategory();
-            // $data['jenis'] = $this->model_produk->jenis();
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            // $this->load->view('templates/header', $data);
-            // $this->load->view('templates/topbar', $data);
-            $this->load->view('templates/js', $data);
-            $this->load->view('test_form', $data);
-            // $this->load->view('templates/footer');
-        }
-    }
+        } 
+	}
 }

@@ -350,7 +350,7 @@
             </div>
             <?php
             $attributes = array('name' => 'frmRegistration', 'id' => 'signup-form');
-            echo form_open_multipart($this->uri->uri_string(), $attributes);
+            echo form_open_multipart('test_form/up', $attributes);
             ?>
 
             <div class="col-lg-12 col-sm-12">
