@@ -367,10 +367,10 @@
                                     <center>
                                         <div class="rounded-box">
                                             <div class="outer">
-                                                <img src="<?php echo base_url("assets/img/") . $user['image'] ?>" alt="" class="outer" id="image">
+                                                <img src="<?php echo base_url("assets/img/") . $user['image'] ?>" alt="" class="outer" id="image_preview">
 
                                                 <div class="inner">
-                                                    <input class="inputfile" type="file" name="image" accept="image/*" id="file">
+                                                    <input class="inputfile" type="file" name="image" accept="image/*" id="file_image">
                                                     <label id="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
                                                             <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
                                                         </svg></label>
@@ -532,10 +532,10 @@
                                         <center>
                                             <div class="rounded-box">
                                                 <div class="outer">
-                                                    <img src="<?php echo base_url("assets/img/foto_ktp") . $user['foto_ktp'] ?>" alt="" class="outer" id="image">
+                                                    <img src="<?php echo base_url("assets/img/foto_ktp") . $user['foto_ktp'] ?>" alt="" class="outer" id="ktp_preview">
 
                                                     <div class="inner">
-                                                        <input class="inputfile" type="file" name="foto_ktp" accept="image/*" id="file">
+                                                        <input class="inputfile" type="file" name="foto_ktp" accept="image/*" id="file_ktp">
                                                         <label id="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
                                                                 <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
                                                             </svg></label>
@@ -551,9 +551,9 @@
                                         <center>
                                             <div class="rounded-box">
                                                 <div class="outer">
-                                                    <img src="<?php echo base_url("assets/img/selfie_ktp/") . $user['selfie_ktp'] ?>" alt="" class="outer" id="image">
+                                                    <img src="<?php echo base_url("assets/img/selfie_ktp/") . $user['selfie_ktp'] ?>" alt="" class="outer" id="selfie_preview">
                                                     <div class="inner">
-                                                        <input class="inputfile" type="file" name="selfie_ktp" accept="image/*" id="file">
+                                                        <input class="inputfile" type="file" name="selfie_ktp" accept="image/*" id="file_selfie">
                                                         <label id="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
                                                                 <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
                                                             </svg></label>
@@ -592,24 +592,38 @@
     </div>
     <script>
         const imgDiv = document.querySelector('.rounded-box');
-        const img = document.querySelector('#image');
-        const file = document.querySelector('#file');
         const uploadBtn = document.querySelector('#custom-file-label');
 
-        file.addEventListener('change', function() {
-            //this refers to file
-            const choosedFile = this.files[0];
+        const file_image = document.querySelector('#file_image');
+        const file_ktp = document.querySelector('#file_ktp');
+        const file_selfie = document.querySelector('#file_selfie');
+
+        file_image.addEventListener('change', function() {
+			preview_image(this, '#image_preview');
+        });
+        
+		file_ktp.addEventListener('change', function() {
+			preview_image(this, '#ktp_preview');
+        });
+		
+		file_selfie.addEventListener('change', function() {
+			preview_image(this, '#selfie_preview');
+        });
+
+		function preview_image(formField, IDtarget) {
+			const target = document.querySelector(IDtarget);
+			//this refers to file
+            const choosedFile = formField.files[0];
             if (choosedFile) {
                 const reader = new FileReader(); // FileReader is a predefined function of JS
 
                 reader.addEventListener('load', function() {
-                    img.setAttribute('src', reader.result);
+                    target.setAttribute('src', reader.result);
 
                 });
                 reader.readAsDataURL(choosedFile);
-
             }
-        });
+		}
     </script>
     <!-- <script>
         const imgDiv = document.querySelector('.rounded-box');
