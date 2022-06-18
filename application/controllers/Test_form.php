@@ -46,7 +46,7 @@ class Test_form extends CI_Controller
         // $data['category'] = $this->model_produk->category();
         // $data['subcategory'] = $this->model_produk->subcategory();
         // $data['jenis'] = $this->model_produk->jenis();
-        $data['user'] = $this->db->get_where('user', ['email' => 'saritribanokta@gmail.com'])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // $this->load->view('templates/header', $data);
         // $this->load->view('templates/topbar', $data);
         $this->load->view('templates/js', $data);
@@ -173,7 +173,7 @@ class Test_form extends CI_Controller
                 // $data['category'] = $this->model_produk->category();
                 // $data['subcategory'] = $this->model_produk->subcategory();
                 // $data['jenis'] = $this->model_produk->jenis();
-                $data['user'] = $this->db->get_where('user', ['email' => 'saritribanokta@gmail.com'])->row_array();
+                $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
                 // $this->load->view('templates/header', $data);
                 // $this->load->view('templates/topbar', $data);
                 $this->load->view('templates/js', $data);
