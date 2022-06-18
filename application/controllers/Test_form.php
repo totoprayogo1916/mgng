@@ -46,7 +46,7 @@ class Test_form extends CI_Controller
         // $data['category'] = $this->model_produk->category();
         // $data['subcategory'] = $this->model_produk->subcategory();
         // $data['jenis'] = $this->model_produk->jenis();
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => 'saritribanokta@gmail.com'])->row_array();
         // $this->load->view('templates/header', $data);
         // $this->load->view('templates/topbar', $data);
         $this->load->view('templates/js', $data);
@@ -74,11 +74,11 @@ class Test_form extends CI_Controller
                 $upload_image = $_FILES['image']['name'];
 
                 if ($upload_image) {
-                    $config['upload_path']   = './assets/img';
-                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                    $config['max_size']      = '2048';
+                    $config_img['upload_path']   = './assets/img';
+                    $config_img['allowed_types'] = 'gif|jpg|png|jpeg';
+                    $config_img['max_size']      = '2048';
 
-                    $this->upload->initialize($config);
+                    $this->upload->initialize($config_img);
 
                     if ($this->upload->do_upload('image')) {
                         $new_image = $this->upload->data('file_name');
@@ -90,11 +90,11 @@ class Test_form extends CI_Controller
                 $portofolio = $_FILES['portofolio']['name'];
 
                 if ($portofolio) {
-                    $config['upload_path']   = './assets/img/portofolio';
-                    $config['allowed_types'] = 'pdf|jpg|png|jpeg';
-                    $config['max_size']      = '2048';
+                    $config_portofolio['upload_path']   = './assets/img/portofolio';
+                    $config_portofolio['allowed_types'] = 'pdf|jpg|png|jpeg';
+                    $config_portofolio['max_size']      = '2048';
 
-                    $this->upload->initialize($config);
+                    $this->upload->initialize($config_portofolio);
 
                     if ($this->upload->do_upload('portofolio')) {
                         $portofolio = $this->upload->data('file_name');
@@ -173,7 +173,7 @@ class Test_form extends CI_Controller
                 // $data['category'] = $this->model_produk->category();
                 // $data['subcategory'] = $this->model_produk->subcategory();
                 // $data['jenis'] = $this->model_produk->jenis();
-                $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+                $data['user'] = $this->db->get_where('user', ['email' => 'saritribanokta@gmail.com'])->row_array();
                 // $this->load->view('templates/header', $data);
                 // $this->load->view('templates/topbar', $data);
                 $this->load->view('templates/js', $data);
